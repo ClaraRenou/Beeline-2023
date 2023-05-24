@@ -33,11 +33,11 @@ else
 fi
 
 cd $BASEDIR/Algorithms/GRN-VAE/
-docker build -q -t grn-vae:base .
-if ([[ "$(docker images -q grn-vae:base 2> /dev/null)" != "" ]]); then
-    echo "Docker container for GRN-VAE is built and tagged as grn-vae:base"
+docker build -q -t grnvae:base .
+if ([[ "$(docker images -q grnvae:base 2> /dev/null)" != "" ]]); then
+    echo "Docker container for GRNVAE is built and tagged as grnvae:base"
 else
-    echo "Oops! Unable to build Docker container for GRN-VAE"
+    echo "Oops! Unable to build Docker container for GRNVAE"
 fi
 
 
