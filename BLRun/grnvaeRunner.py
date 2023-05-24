@@ -10,43 +10,43 @@ def generateInputs(RunnerObj):
     this function will not do anything.
     :param RunnerObj: An instance of the :class:`BLRun`
     '''
-    if not RunnerObj.inputDir.joinpath("GRN-VAE").exists():
-        print("Input folder for GRN-VAE does not exist, creating input folder...")
-        RunnerObj.inputDir.joinpath("GRN-VAE").mkdir(exist_ok = False)
+    if not RunnerObj.inputDir.joinpath("GRNVAE").exists():
+        print("Input folder for GRNVAE does not exist, creating input folder...")
+        RunnerObj.inputDir.joinpath("GRNVAE").mkdir(exist_ok = False)
         
-    if not RunnerObj.inputDir.joinpath("GRN-VAE/ExpressionData.csv").exists():
+    if not RunnerObj.inputDir.joinpath("GRNVAE/ExpressionData.csv").exists():
         # input data
         ExpressionData = pd.read_csv(RunnerObj.inputDir.joinpath(RunnerObj.exprData),
                                      header = 0, index_col = 0)
 
-        # Write gene expression data in GRN-VAE folder 
-        ExpressionData.to_csv(RunnerObj.inputDir.joinpath("GRN-VAE/ExpressionData.csv"),
+        # Write gene expression data in GRNVAE folder 
+        ExpressionData.to_csv(RunnerObj.inputDir.joinpath("GRNVAE/ExpressionData.csv"),
                              sep = ',', header  = True)
 
-    if not RunnerObj.inputDir.joinpath("GRN-VAE/refNetwork.csv").exists():
+    if not RunnerObj.inputDir.joinpath("GRNVAE/refNetwork.csv").exists():
         refNetworkData = pd.read_csv(RunnerObj.inputDir.joinpath(RunnerObj.trueEdges),
                                      header = 0, index_col = 0)
 
-	  # Write reference network data in GRN-VAE folder 
-        refNetworkData.to_csv(RunnerObj.inputDir.joinpath("GRN-VAE/refNetwork.csv"),
+	  # Write reference network data in GRNVAE folder 
+        refNetworkData.to_csv(RunnerObj.inputDir.joinpath("GRNVAE/refNetwork.csv"),
                              sep = ',', header  = True)    
 
     
 def run(RunnerObj):
     '''
-    Function to run GRN-VAE algorithm
+    Function to run GRNVAE algorithm
     :param RunnerObj: An instance of the :class:`BLRun`
     '''
     inputPath = "data" + str(RunnerObj.inputDir).split(str(Path.cwd()))[1] + \
-                    "/GRN-VAE/ExpressionData.csv"
+                    "/GRNVAE/ExpressionData.csv"
 
     # make output dirs if they do not exist:
-    outDir = "outputs/"+str(RunnerObj.inputDir).split("inputs/")[1]+"/GRN-VAE/"
+    outDir = "outputs/"+str(RunnerObj.inputDir).split("inputs/")[1]+"/GRNVAE/"
     os.makedirs(outDir, exist_ok = True)
     
     outPath = "data/" +  str(outDir) + 'outFile.txt'
     cmdToRun = ' '.join(['docker run --rm -v', str(Path.cwd())+':/data/ --expose=41269', 
-                         'grn-vae:base /bin/sh -c \"time -v -o', "data/" + str(outDir) + 'time.txt', 'python runGRN-VAE.py',
+                         'grnvae:base /bin/sh -c \"time -v -o', "data/" + str(outDir) + 'time.txt', 'python runGRNVAE.py',
                          '--inFile='+inputPath, '--outFile='+outPath, '\"'])
 
     print(cmdToRun)
@@ -59,7 +59,7 @@ def parseOutput(RunnerObj):
     :param RunnerObj: An instance of the :class:`BLRun`
     '''
     # Quit if output directory does not exist
-    outDir = "outputs/"+str(RunnerObj.inputDir).split("inputs/")[1]+"/GRN-VAE/"
+    outDir = "outputs/"+str(RunnerObj.inputDir).split("inputs/")[1]+"/GRNVAE/"
 
         
     # Read output file
