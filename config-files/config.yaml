@@ -62,6 +62,11 @@ input_settings:
               nRep: [6]
               
               
+        - name: "GRNVAE"
+          params: 
+              should_run: [True]
+              
+              
 
 # Output Settings: initialize base output folder names
 output_settings:
