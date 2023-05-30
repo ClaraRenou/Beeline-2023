@@ -41,4 +41,12 @@ else
     echo "Oops! Unable to build Docker container for GRNVAE"
 fi
 
+cd $BASEDIR/Algorithms/Inferelator/
+docker build -q -t inferelator:base .
+if ([[ "$(docker images -q inferelator:base 2> /dev/null)" != "" ]]); then
+    echo "Docker container for Inferelator is built and tagged as inferelator:base"
+else
+    echo "Oops! Unable to build Docker container for Inferelator"
+fi
+
 cd $BASEDIR
