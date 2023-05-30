@@ -2,7 +2,8 @@ import BLRun.scodeRunner as SCODE
 import BLRun.pidcRunner as PIDC
 import BLRun.genie3Runner as GENIE3
 import BLRun.grnboost2Runner as GRNBOOST2
-import BLRun.grnvaeRunner as GRNVAE
+#import BLRun.grnvaeRunner as GRNVAE
+import BLRun.inferelatorRunner as Inferelator
 
 from pathlib import Path
 
@@ -10,14 +11,16 @@ InputMapper = {'SCODE':SCODE.generateInputs,
                'PIDC':PIDC.generateInputs,
                'GENIE3':GENIE3.generateInputs,
                'GRNBOOST2':GRNBOOST2.generateInputs,
-               'GRNVAE':GRNVAE.generateInputs,}
+               #'GRNVAE':GRNVAE.generateInputs,
+               'Inferelator':Inferelator.generateInputs,}
 
 
 AlgorithmMapper = {'SCODE':SCODE.run,
             'PIDC':PIDC.run,
             'GENIE3':GENIE3.run,
             'GRNBOOST2':GRNBOOST2.run,
-            'GRNVAE':GRNVAE.run,}
+            #'GRNVAE':GRNVAE.run,
+            'Inferelator':Inferelator.run,}
 
 
 
@@ -25,7 +28,8 @@ OutputParser = {'SCODE':SCODE.parseOutput,
             'PIDC':PIDC.parseOutput,
             'GENIE3':GENIE3.parseOutput,
             'GRNBOOST2':GRNBOOST2.parseOutput,
-            'GRNVAE':GRNVAE.parseOutput,}
+            #'GRNVAE':GRNVAE.parseOutput,
+            'Inferelator':Inferelator.parseOutput,}
 
 
 class Runner(object):
