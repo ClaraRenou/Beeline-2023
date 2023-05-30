@@ -26,9 +26,6 @@ def parseArgs(args):
     
     parser.add_option('', '--inFile', type='str',
                       help='Path to input tab-separated expression SamplesxGenes file')
-
-    parser.add_option('', '--outFile', type = 'str',
-                      help='File where the output network is stored')
     
     parser.add_option('', '--tf_list', type = 'str',
                       help='File with TF names')
